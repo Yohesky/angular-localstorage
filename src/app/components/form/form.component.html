@@ -1,0 +1,84 @@
+<h3 class="text-center mt-1 animate__animated animate__bounceInLeft"> {{edit == true ? "Actualizar contacto": "Crear Contacto"}} </h3>
+<form [formGroup]="contact" class="animate__animated animate__bounceInLeft">
+
+  <div class="form-group">
+    <mat-form-field appearance="outline">
+      <mat-label>Numero de Identificación</mat-label>
+      <input formControlName="identificacion" matInput placeholder="Placeholder">
+    </mat-form-field>
+
+    <div *ngIf="contact['controls']['identificacion']?.errors?.required && contact['controls']['identificacion']?.touched">
+      <p class="text-danger text-center">El campo es requerido</p>
+    </div>
+
+    <div *ngIf="contact.controls['identificacion'].invalid && (contact.controls['identificacion'].dirty || contact.controls['identificacion'].touched)">
+      <p class="text-danger text-center">El campo solo permite números</p>
+      <p class="text-danger text-center">Longitud entre 6 y 10 caracteres</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre Completo</mat-label>
+      <input formControlName="nombre" matInput placeholder="Placeholder">
+    </mat-form-field>
+
+    <div *ngIf="contact['controls']['nombre']?.errors?.required && contact['controls']['nombre']?.touched">
+      <p class="text-danger text-center">El campo es requerido</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="outline">
+      <mat-label>Dirección</mat-label>
+      <input formControlName="direccion" matInput placeholder="Placeholder">
+    </mat-form-field>
+
+    <div *ngIf="contact['controls']['direccion']?.errors?.required && contact['controls']['direccion']?.touched">
+      <p class="text-danger text-center">El campo es requerido</p>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <mat-form-field appearance="outline">
+      <mat-label>Celular</mat-label>
+      <input formControlName="celular" matInput placeholder="Placeholder">
+    </mat-form-field>
+
+    <div *ngIf="contact['controls']['celular']?.errors?.required && contact['controls']['celular']?.touched">
+      <p class="text-danger text-center">El campo es requerido</p>
+    </div>
+
+    <div *ngIf="contact.controls['celular'].invalid && (contact.controls['celular'].dirty || contact.controls['celular'].touched)">
+      <p class="text-danger text-center">El campo solo permite números</p>
+      <p class="text-danger text-center">Longitud entre 6 y 10 caracteres</p>
+    </div>
+  </div>
+
+  <div class="form-group ">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <mat-label> {{edit ? this.contact.value.fecha : "Fecha de cumpleaños" }} </mat-label>
+      <input formControlName="fecha" matInput [matDatepicker]="picker" >
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <div *ngIf="contact['controls']['fecha']?.errors?.required && contact['controls']['fecha']?.touched">
+      <p class="text-danger text-center">El campo es requerido y debe ser una fecha</p>
+    </div>
+  </div>
+  <span style="text-align: center;" class="text-danger mb-3"> {{msg}} </span>
+
+  <div class="row mt-4">
+    <div class="col">
+      <button class="bg-success" mat-raised-button color="primary" (click)="handleForm()">Guardar</button>
+    </div>
+
+    <div class="col">
+      <button (click)="goToList()" class="bg-danger"  mat-raised-button color="primary">Cancelar</button>
+    </div>
+  </div>
+
+</form>

@@ -1,0 +1,18 @@
+.flex{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.item {
+  display: flex;
+  margin: auto;
+}
+
+.fa-user-circle,
+.fa-pen-square,
+.fa-trash-alt{
+  cursor: pointer;
+}
+
+

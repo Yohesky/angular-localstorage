@@ -1,0 +1,56 @@
+<div class="animate__animated animate__bounceInLeft">
+<div class="buttons mt-3">
+  <div class="flex">
+    <button mat-raised-button color="primary" (click)="goBack()">Inicio</button>
+
+   <div>
+     <a routerLink="/user" class="btn btn-outline-success">Nuevo Contacto</a>
+   </div>
+
+  </div>
+</div>
+
+<div class="lists mt-2" *ngFor="let c of contacts |	paginate: {itemsPerPage: 6, currentPage: p} ; let i = index ">
+  <mat-card class="mt-2 item" >
+
+    <div class="col-md-4">
+      <i class="fas fa-2x fa-user-circle mt-3"></i>
+    </div>
+
+    <div class="col-md-4" style="display: flex; justify-content: center; flex-direction: column;">
+      <div>
+        <span> {{c.nombre}} </span>
+      </div>
+
+      <div>
+        <span> {{c.celular}} </span>
+      </div>
+
+      <div>
+        <span> {{c.fecha}} </span>
+      </div>
+    </div>
+
+    <div  class="col-md-4" style="display: flex; justify-content: space-around;">
+      <div (click)="sendContact(c, i)">
+        <i class="fas fa-2x fa-pen-square mt-3 text-info"></i>
+      </div>
+
+      <div (click)="deleteContact(c, i)">
+        <i class="fas fa-2x fa-trash-alt mt-3 text-danger"></i>
+      </div>
+
+    </div>
+
+    <!-- <div class="col-md-3" (click)="deleteContact(c, i)">
+      <i class="fas fa-2x fa-trash-alt mt-3"></i>
+    </div> -->
+
+  </mat-card>
+</div>
+<div class="mt-5 text-center">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+</div>
+
+

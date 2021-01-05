@@ -40,8 +40,11 @@ export class FormComponent implements OnInit {
     console.log(this.local.getContact());
 
     let getConctact = this.local.getContact()
+    console.log("contact",getConctact);
 
-    if(getConctact.id !== null){
+    if(getConctact.nombre){
+      console.log("diferente de null");
+
       this.edit = true
       this.id = getConctact.id
       this.contact.controls.fecha.setValue(getConctact.fecha)
